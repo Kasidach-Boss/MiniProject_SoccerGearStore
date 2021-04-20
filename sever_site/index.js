@@ -19,7 +19,6 @@ const router = require('express').Router(),
 
 app.use('/api', router)
 router.use(cors({ origin: 'http://localhost:3000', credentials: true }))
-// router.use(cors())
 router.use(express.json())
 router.use(express.urlencoded({ extended: false }))
 
@@ -54,9 +53,15 @@ router.post('/login', (req, res, next) => {
         } else
             return res.status(422).json(info)
     })(req, res, next)
+
+    passport.authenticate('jwt', { session: false }),
+    (req, res, next) => {
+        res.send(req.user)
+    }
 })
 
 router.get('/logout', (req, res) => { 
+    
     res.setHeader(
         "Set-Cookie",
         cookie.serialize("token", '', {
@@ -68,6 +73,7 @@ router.get('/logout', (req, res) => {
         })
     );
     res.statusCode = 200
+    
     return res.json({ message: 'Logout successful' })
 })
 
@@ -153,11 +159,9 @@ router.route('/soccers/:soccer_id')
     res.json(soccers);
 })
 
-router.route('/soccers/income')
-.post((req,res)=>{
-	let income = 0;
-    res.json(income)
-})
+let income = 0
+router.route('/income')
+     .get((req, res) => res.json(income))
 
 
 
