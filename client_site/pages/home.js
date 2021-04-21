@@ -9,10 +9,12 @@ import useSWR, { mutate } from 'swr';
 import { useState } from 'react'
 
 const URL = `http://localhost/api/soccers`;
+const URLIN = `http://localhost/api/income`;
 const fetcher = url => axios.get(url).then(res=>res.data);
 
 export default function Home({ token }) {
     const {data} = useSWR(URL,fetcher);
+    const {data1} = useSWR(URLIN,fetcher);
     const [soccers, setSoccers] = useState({})
     const [soccer, setSoccer] = useState({})
     const [image, setImage] = useState('')
@@ -21,6 +23,7 @@ export default function Home({ token }) {
     const [model, setModel] = useState('');
     const [price, setPrice] = useState(0);
     const [remark, setRemark] = useState('');
+    const [income, setIncome] = useState(0);
 
     if(!data){
         console.log(data);
@@ -37,11 +40,18 @@ export default function Home({ token }) {
         mutate(URL)
     }
 
+    const getIncome = async()=>{
+        let income = await axios.get(`${URLIN}`);
+        setIncome(income.data)
+    }
+    
+
     const printSoccers=()=>{
         if(data.list && data.list.length){
             return data.list.map((item, index)=>{
                 return(
                     <div className={styles.listItem} key={index}>
+                        
                         <div><img src={item.image} alt={item.model} className={styles.img}/></div>
                         <div><b>Brand:</b> {item.brand}</div>
                         <div> <b>Model:</b> {item.model} </div>
@@ -69,9 +79,12 @@ export default function Home({ token }) {
     </Head>
     <div className={styles.container}>
         <Navbar />
+       
         <h1>Home page</h1>
         No login required!
-        <div className={styles.list}>
+        {/* <div>{printIncome()}</div> */}
+        <div className={styles.list}> 
+        
         {printSoccers()}
         </div>
     </div>

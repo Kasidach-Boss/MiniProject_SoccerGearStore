@@ -118,7 +118,8 @@ router.get('/foo',
 
 let soccers = {
     list:[
-        {id:1,image:"https://cdn.arifootballstore.com/catalog/product/cache/image/beff4985b56e3afdbeabfc89641a4582/n/i/nike_vapor_14_pro_fg_-_black_cyber-off_noir_-_cu5693-090_02.jpg?w=400",brand:"nike",model:"MERCURIAL VAPOR 14 PRO",type:"shoes",price:4700,remark:"In stock" }
+        {id:1,image:"https://cdn.arifootballstore.com/catalog/product/cache/image/beff4985b56e3afdbeabfc89641a4582/n/i/nike_vapor_14_pro_fg_-_black_cyber-off_noir_-_cu5693-090_02.jpg?w=400",brand:"nike",model:"MERCURIAL VAPOR 14 PRO",type:"shoes",price:4700,numberofproduct:20,remark:"In stock" },
+        {id:2,image:"https://cdn.arifootballstore.com/catalog/product/cache/image/beff4985b56e3afdbeabfc89641a4582/n/i/nike_vapor_14_pro_fg_-_black_cyber-off_noir_-_cu5693-090_02.jpg?w=400",brand:"nike",model:"MERCURIAL VAPOR 14 PRO",type:"shoes",price:4700,numberofproduct:20,remark:"In stock"}
     ]
 }
 router.route('/soccers')
@@ -128,10 +129,11 @@ router.route('/soccers')
 .post((req,res)=>{
     let id = (soccers.list.length)?soccers.list[soccers.list.length-1].id+1:1;
     let image = req.body.image;
-    let barnd = req.body.brand;
+    let brand = req.body.brand;
     let model = req.body.model;
     let type = req.body.type;
     let price = req.body.price;
+    let numberofproduct = req.body.numberofproduct;
     let remark = req.body.remark;
     soccers.list = [...soccers.list,{id,image,brand,model,type,price,remark}];
     res.json(soccers)
@@ -143,12 +145,13 @@ router.route('/soccers/:soccer_id')
     res.json(soccers.list[id]);
 })
 .put((req,res)=>{
-    let id = soccers.list.findIndex((item)=>(item.id === +req.params.book_id));
-    soccers.list[id].image = req.bosy.image;
+    let id = soccers.list.findIndex((item)=>(item.id === +req.params.soccer_id));
+    soccers.list[id].image = req.body.image;
     soccers.list[id].brand = req.body.brand;
     soccers.list[id].model = req.body.model;
     soccers.list[id].type = req.body.type;
     soccers.list[id].price = req.body.price;
+    soccers.list[id].numberofproduct = req.body.numberofproduct;
     soccers.list[id].remark = req.body.remark;
     res.json(soccers);
 })
@@ -157,10 +160,19 @@ router.route('/soccers/:soccer_id')
     res.json(soccers);
 })
 
-let income = {income:0}
-router.route('/income')
-     .get((req, res) => res.json(income))
-
+router.route('/soccers/buy/:soccer_id')
+.put((req,res)=>{
+    let id = soccers.list.findIndex((item)=>(item.id === +req.params.soccer_id));
+    soccers.list[id].numberofproduct =soccers.list[id].numberofproduct - 1 ;
+    if(soccers.list[id].numberofproduct === 0 ){
+        soccers.list[id].remark = "out of stock";
+    }
+    if(soccers.list[id].numberofproduct < 0){
+        soccers.list[id].numberofproduct = 0;
+        soccers.list[id].remark = "out of stock";
+    }
+    res.json(soccers);
+})
 
 
 
