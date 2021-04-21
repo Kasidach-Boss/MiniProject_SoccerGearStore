@@ -45,19 +45,29 @@ const admin = ({ token }) => {
    
   }
   const updateSoccer = async (id) => {
-    let soccer = await axios.put(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
-    setStudents(soccer.data)
-    mutate(URL)
+    let answer = window.confirm("Do you want to update it?")
+    if (answer === true) {
+      let soccer = await axios.put(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
+      setStudents(soccer.data)
+      mutate(URL)
+    }
   }
 
   const deleteSoccer = async (id) => {
-    let soccer = await axios.delete(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
-    mutate(URL)
+    let answer = window.confirm("Do you want to delete it?")
+    if (answer === true) {
+      let soccer = await axios.delete(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
+      mutate(URL)
+    }
   }
 
   const buy = async(id)=>{
     let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})
-    setNumberofproduct(soccer.data)
+    let answer = window.confirm("Do you want to buy it?")
+    if (answer === true) {
+      setNumberofproduct(soccer.data)
+    }
+    
   }
   
 
@@ -68,7 +78,7 @@ const admin = ({ token }) => {
                   <div className={styles.listItem} key={index}>
                       <div><img src={item.image} alt={item.model} className={styles.img}/></div>
                       <div><b>Brand:</b> {item.brand}</div>
-                      <div> <b>Model:</b> {item.model} </div>
+                      <div><b>Model:</b> {item.model} </div>
                       <div><b>Type:</b> {item.type}</div>
                       <div><b>Price:</b> {item.price} ฿</div>
                       <div><b>Number of product:</b> {item.numberofproduct} pieces</div>
@@ -96,8 +106,9 @@ const admin = ({ token }) => {
       <Head>
           <title>First Page</title>
       </Head>
+      <Navbar />
       <div className={styles.container}>
-          <Navbar />
+          
           
           <h1>Home page</h1>
             Image Path or Link Image address:<input type="text" onChange={(e) => setImage(e.target.value)}></input>

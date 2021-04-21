@@ -79,8 +79,9 @@ export default function Login({ token }) {
             <Head>
                 <title>Login</title>
             </Head>
+           <Navbar />
             <div className={styles.container}>
-                <Navbar />
+            
                 <h1>Login</h1>
                 <div><b>Token:</b> {token.substring(0, 15)}...
                 <button onClick={copyText}> Copy token </button>

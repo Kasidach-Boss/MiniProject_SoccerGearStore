@@ -22,8 +22,9 @@ export default function Home({ token }) {
     const[type, setType] = useState('')
     const [model, setModel] = useState('');
     const [price, setPrice] = useState(0);
+    const [numberofproduct, setNumberofproduct] = useState(0)
     const [remark, setRemark] = useState('');
-    const [income, setIncome] = useState(0);
+    
 
     if(!data){
         console.log(data);
@@ -44,7 +45,14 @@ export default function Home({ token }) {
         let income = await axios.get(`${URLIN}`);
         setIncome(income.data)
     }
-    
+    const buy = async(id)=>{
+        let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})
+        let answer = window.confirm("Do you want to buy it?")
+        if (answer === true) {
+          setNumberofproduct(soccer.data)
+        }
+        
+    }
 
     const printSoccers=()=>{
         if(data.list && data.list.length){
@@ -57,10 +65,12 @@ export default function Home({ token }) {
                         <div> <b>Model:</b> {item.model} </div>
                         <div><b>Price:</b> {item.price}</div>
                         <div><b>Type:</b> {item.type}</div>
+                        <div><b>number of product:</b> {item.numberofproduct}</div>
                         <div><b>Status:</b> {item.remark}</div>
                         
                         <div>
                         <button onClick={() => getSoccer(item.id)}>Get</button>
+                        <button onClick={()=> buy(item.id)}>Buy</button>
                         </div>
                         <br></br>
                     </div>
@@ -77,12 +87,13 @@ export default function Home({ token }) {
     <Head>
         <title>First Page</title>
     </Head>
+    <Navbar />
     <div className={styles.container}>
-        <Navbar />
+        
        
         <h1>Home page</h1>
         No login required!
-        {/* <div>{printIncome()}</div> */}
+        
         <div className={styles.list}> 
         
         {printSoccers()}
