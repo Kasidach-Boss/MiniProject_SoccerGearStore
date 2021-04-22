@@ -75,8 +75,8 @@ const admin = ({ token }) => {
       if(data.list && data.list.length){
           return data.list.map((item, index)=>{
               return(
-                  <div className={styles.card} key={index}>
-                    <div>
+                  <div className={styles.productlist} key={index}>
+                    
                       <img src={item.image} alt={item.model} className={styles.img}/><br/>
                       <b>Brand:</b> {item.brand}<br/>
                       <b>Model:</b> {item.model}<br/>
@@ -85,12 +85,11 @@ const admin = ({ token }) => {
                       <b>Number of product:</b> {item.numberofproduct} pieces<br/>
                       <b>Status:</b> {item.remark}<br/>
                       
-                      
+                      <br/>
                       <button onClick={() => getSoccer(item.id)}>Get</button>
                       <button onClick={() => updateSoccer(item.id)}>Update</button>
                       <button onClick={() => deleteSoccer(item.id)}>Delete</button>
                       
-                    </div>
                       
                       
                       

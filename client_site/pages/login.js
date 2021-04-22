@@ -5,6 +5,8 @@ import Navbar from '../components/navbar'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 import config from '../config/config'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login({ token }) {
 
@@ -12,7 +14,17 @@ export default function Login({ token }) {
     const [password, setPassword] = useState('')
     const [status, setStatus] = useState('')
     const[remember, setRemember] = useState(false)
+    
+    // const notify = () => {
+    //     const noti = toast("Wow so easy!");
+    //     return(
+    //         <div>
+    //             <button onClick={noti}>Notify!</button>
+    //             <ToastContainer />
+    //         </div>
+    //     )
 
+    // }
     const login = async (req, res) => {
         try {
             let result = await axios.post(`${config.URL}/login`,
@@ -22,11 +34,18 @@ export default function Login({ token }) {
             console.log('result.data:  ', result.data)
             console.log('token:  ', token)
             setStatus(result.status + ': ' + result.data.user.username)
+            const Hello = toast(`Hello ${result.data.user.username}`)
+            
+            
+            
+              
+            
         }
         catch (e) {
             console.log('error: ', JSON.stringify(e.response))
             setStatus(JSON.stringify(e.response).substring(0, 80) + "...")
         }
+        
     }
 
     const loginForm = () => (
@@ -61,6 +80,7 @@ export default function Login({ token }) {
        
       </div> 
       <div ><label>Remember Me</label></div>
+      
     </div>
        
        
@@ -69,9 +89,7 @@ export default function Login({ token }) {
     const rememberStatus = async () =>{
         setRemember(true)
     }
-    const reset = () =>{
-       
-    }
+   
 
     const copyText = () => {
         navigator.clipboard.writeText(token)
@@ -98,6 +116,7 @@ export default function Login({ token }) {
                 <div>
                     <button onClick={login}>Login</button>
                 </div>
+                
                 
             </div>
         </Layout>
