@@ -77,6 +77,7 @@ export default function Register({ token }) {
             <Head>
                 <title>Register</title>
             </Head>
+
             <Navbar />
             <div className={styles.container}>
                 

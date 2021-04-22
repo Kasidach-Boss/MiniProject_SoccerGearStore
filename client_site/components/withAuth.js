@@ -6,8 +6,11 @@ const withAuth = WrappedComponent => {
         const { token } = props
         const router = useRouter()
         useEffect(() => {
-            if (!token)
+            if (!token){
+                alert("Please Login Before use Admin side or contact to admin!!!!!")
                 router.push('/login')
+            }
+                
         }, [token])
         return (<WrappedComponent {...props} />)
     }

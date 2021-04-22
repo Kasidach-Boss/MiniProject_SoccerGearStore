@@ -10,7 +10,7 @@ const GetConfig = () => {
             <title>Get Config</title>
         </Head>
         <div className={styles.container}>
-            <Navbar />
+            {/* <Navbar /> */}
             <h2> Get Configuration from ../config/config.js </h2>
             <b>Config: </b> {JSON.stringify(config)}
             <ul>

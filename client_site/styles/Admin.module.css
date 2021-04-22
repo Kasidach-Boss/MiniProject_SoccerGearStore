@@ -1,0 +1,85 @@
+.container {
+    min-height: 100vh;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .card {
+    margin: 1rem;
+    flex-basis: 45%;
+    padding: 1.5rem;
+    text-align: left;
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    
+  }
+  
+  
+  
+  .card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .card p {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+  
+  .logo {
+    height: 1em;
+  }
+  
+  @media (max-width: 600px) {
+    .grid {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+  
+  .img{
+    width:30%;
+    height:50%;
+  }
+  
+  .store{
+    font-size: medium;
+    float: left;
+  }
+  
+  .load{
+    width:200px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left:50%;
+    margin-left: -100px;
+    margin-top: -50px;
+  }
+  .productlist{
+    
+      display: flex;
+      flex-direction: column;
+      margin: 0px;
+      padding: 0px;
+      border: 2px solid green;
+      font-size: 1.4rem;
+      text-align: left;
+      
+    
+  }
+  .list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    margin: 10px;
+    padding: 1px;
+    flex-wrap: wrap;
+    width: 80vw;
+  }

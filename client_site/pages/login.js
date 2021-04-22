@@ -69,6 +69,9 @@ export default function Login({ token }) {
     const rememberStatus = async () =>{
         setRemember(true)
     }
+    const reset = () =>{
+       
+    }
 
     const copyText = () => {
         navigator.clipboard.writeText(token)
@@ -95,6 +98,7 @@ export default function Login({ token }) {
                 <div>
                     <button onClick={login}>Login</button>
                 </div>
+                
             </div>
         </Layout>
     )

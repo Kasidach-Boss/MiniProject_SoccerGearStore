@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Admin.module.css'
 import useSWR, { mutate } from 'swr';
 import withAuth from '../components/withAuth'
 import config from '../config/config'
@@ -15,10 +15,10 @@ const admin = ({ token }) => {
   const {data} = useSWR(URL,fetcher);
   const [soccers, setSoccers] = useState({})
   const [soccer, setSoccer] = useState({})
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState('./api/emptyphoto.png')
   const [brand, setBrand] = useState('');
   const [type, setType] = useState('')
-  const [model, setModel] = useState('');
+  const [model, setModel] = useState('empty');
   const [price, setPrice] = useState(0);
   const [numberofproduct, setNumberofproduct] = useState(0)
   const [remark, setRemark] = useState('');
@@ -26,7 +26,7 @@ const admin = ({ token }) => {
 
   if(!data){
       console.log(data);
-      return <div><h1>Loading...</h1></div>
+      return <div className={styles.load}><h1>Loading...</h1></div>
   }
   const getSoccer = async(id)=>{
       let result = await axios.get(`${URL}/${id}`);
@@ -61,36 +61,39 @@ const admin = ({ token }) => {
     }
   }
 
-  const buy = async(id)=>{
-    let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})
-    let answer = window.confirm("Do you want to buy it?")
-    if (answer === true) {
-      setNumberofproduct(soccer.data)
-    }
+  // const buy = async(id)=>{
+  //   let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})
+  //   let answer = window.confirm("Do you want to buy it?")
+  //   if (answer === true) {
+  //     setNumberofproduct(soccer.data)
+  //   }
     
-  }
+  // }
   
 
   const printSoccers=()=>{
       if(data.list && data.list.length){
           return data.list.map((item, index)=>{
               return(
-                  <div className={styles.listItem} key={index}>
-                      <div><img src={item.image} alt={item.model} className={styles.img}/></div>
-                      <div><b>Brand:</b> {item.brand}</div>
-                      <div><b>Model:</b> {item.model} </div>
-                      <div><b>Type:</b> {item.type}</div>
-                      <div><b>Price:</b> {item.price} ฿</div>
-                      <div><b>Number of product:</b> {item.numberofproduct} pieces</div>
-                      <div><b>Status:</b> {item.remark}</div>
+                  <div className={styles.card} key={index}>
+                    <div>
+                      <img src={item.image} alt={item.model} className={styles.img}/><br/>
+                      <b>Brand:</b> {item.brand}<br/>
+                      <b>Model:</b> {item.model}<br/>
+                      <b>Type:</b> {item.type}<br/>
+                      <b>Price:</b> {item.price} ฿<br/>
+                      <b>Number of product:</b> {item.numberofproduct} pieces<br/>
+                      <b>Status:</b> {item.remark}<br/>
                       
-                      <div>
+                      
                       <button onClick={() => getSoccer(item.id)}>Get</button>
                       <button onClick={() => updateSoccer(item.id)}>Update</button>
                       <button onClick={() => deleteSoccer(item.id)}>Delete</button>
-                      <button onClick={()=> buy(item.id)}>Buy</button>
                       
-                      </div>
+                    </div>
+                      
+                      
+                      
                       <br></br>
                   </div>
               )
@@ -120,13 +123,15 @@ const admin = ({ token }) => {
             Status:<input type="text" onChange={(e) => setRemark(e.target.value)}></input>
             <br></br>
             <button  onClick={() => addSoccer(image,brand,model,type,price,remark,numberofproduct)}>Add a Product</button>
+            <div className={styles.list}>
+             {printSoccers()} 
+            </div>
             
-            
-          <div className={styles.list}>
-            
-          {printSoccers()}
-          </div>
-      </div>
+      </div>      
+                                
+          
+          
+      
     </Layout>
     )
 }

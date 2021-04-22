@@ -28,7 +28,7 @@ export default function Home({ token }) {
 
     if(!data){
         console.log(data);
-        return <div><h1>Loading...</h1></div>
+        return <div className={styles.load}><h1>Loading...</h1></div>
     }
     const getSoccer = async(id)=>{
         let result = await axios.get(`${URL}/${id}`);
