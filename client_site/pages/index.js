@@ -8,7 +8,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import WordArt from 'react-wordart'
 import{GiShoppingCart} from 'react-icons/gi';
-import { Button } from 'semantic-ui-react'
+import YouTube from 'react-youtube-embed';
 
 export default function Home({ token }) {
   
@@ -44,12 +44,9 @@ export default function Home({ token }) {
                     <animated.div className="box" style={contentProps}>
                     <h1><center>Hey there ! This is basic skill</center></h1>
                     <center> 
-                      <iframe width="1000" height="700" className={styles.video}
-                      src="https://www.youtube.com/embed/L8taGwfp2sU" 
-                      title="YouTube video player" 
-                      frameborder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                      </iframe> 
+                      
+                     <div className={styles.video}><YouTube id='L8taGwfp2sU' ></YouTube></div> 
+
                         
                     </center>
                     </animated.div>
@@ -70,13 +67,8 @@ export default function Home({ token }) {
                    <animated.div className="box" style={contentProps1}>
                    <h1><center>Hey there ! This is Goalkeeper skill</center></h1>
                    <center> 
-                   <iframe width="1000" height="700" className={styles.video}
-                   src="https://www.youtube.com/embed/7n51nnJPT6w"
-                    title="YouTube video player" frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-                    </iframe>
-                       
+                   
+                    <div className={styles.video}><YouTube id='7n51nnJPT6w' ></YouTube></div> 
                    </center>
                    </animated.div>
                )}
@@ -88,6 +80,7 @@ export default function Home({ token }) {
                     </button>
                 </div>
                 <br></br><br></br>
+               
                 <Link href="/home">
               <button className={styles.buttonbuy}>
                   <p>Click to shop with us! &nbsp;<GiShoppingCart/></p>

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
+import Link from 'next/link';
 import { useState } from 'react'
 import Navbar from '../components/navbar'
 import styles from '../styles/Login.module.css'
@@ -10,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReactDom from 'react-dom';
 import React from 'react';
 import { useSpring, animated } from "react-spring";
-
+import {FaKey,FaUser} from 'react-icons/fa';
 export default function Login({ token }) {
 
     const [username, setUsername] = useState('')
@@ -56,38 +57,43 @@ export default function Login({ token }) {
 
     const loginForm = () => (
         
-       
-        <div className={styles.gridContainer}>
-             <center>Hello {username}</center>
-                Username:
-            
-            
+       <div styles={styles.card}>
+        
+             <h3><center>Hello {username}</center></h3>
+             <div className={styles.imgcontainer}>
+                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Avatar" className={styles.avatar}/>
+             </div> 
+             <div className={styles.inputcontainer}>
+                <FaUser className={styles.icon} />
+                
                 <input type="text"
                     name="username"
-                    placeholder="username"
+                    placeholder="username" className={styles.input}
                     onChange={(e) => setUsername(e.target.value)}
-                /><br/>
+                /><br/> 
+             </div>
             
+             <div className={styles.inputcontainer}>
             
-                Password:
+                <FaKey className={styles.icon}/>
             
            
                 <input type="password"
-                    name="password"
+                    name="password" className={styles.input}
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)} /><br/>
+            </div>
             
-            
-            
+        <label className={styles.check}>    
         <input
-          id="remember"
+          id="remember" 
           name="remember"
           type="checkbox"
           onClick={rememberStatus}
         />
+       Remember Me</label>
        
-       
-      <label>Remember Me</label>
+      
       <ToastContainer/>
       
     </div>
@@ -101,43 +107,48 @@ export default function Login({ token }) {
     }
    
 
-    const copyText = () => {
-        navigator.clipboard.writeText(token)
-    }
+    
 
     return (
         <Layout>
             <Head>
                 <title>Login</title>
             </Head>
-           <Navbar />
+           <Navbar /> 
+           <div>
+               <img src="../components/asset/image/avartar.png"/>
+               </div>
             <div className={styles.container}>
-            
-                <h1>Login</h1>
-                {/* <div><b>Token:</b> {token.substring(0, 15)}...
-                <button onClick={copyText}> Copy token </button>
-                </div>
-                <br/>
-                <div>
-                    Status:  {status}
-                </div> */}
+               
+                <div className={styles.card}>
+                   <h1>Login</h1>
                 <div className="button-container">
-                    <button onClick={() => displayGreeting(a => !a)} className="button">
-                    Login
+                    <button onClick={() => displayGreeting(a => !a)} className={styles.clbtn}>
+                   Click to Login
                     </button>
+                </div> 
                 </div>
+                
                 {!greetingStatus ? (
                    
-                    <div className="Intro"> <br/>Click button below for login</div>
+                    <div className="Intro"> <br/><h3 className={styles.introfont}>Click button below for login</h3></div>
                 ) : (
-                    <animated.div className="box" style={contentProps}>
-                    <h1>Hey there ! This is login page. Good luck for shopping.</h1>
+                    <animated.div className={styles.box} style={contentProps}>
+                    <center><h1>Hey there ! This is login page.</h1></center>
                     <center>{loginForm()} 
                         <div>
-                            <button onClick={login}>Login</button>
+                            
+                            <Link href="/register">
+                                <button className={styles.buttonregis}>
+                                    Register
+                                </button>
+                            </Link>
+                            <button onClick={login} className={styles.button} >Login</button>
                         </div>
                     </center>
+                    <br></br><br></br>
                     </animated.div>
+                    
                 )}
                
                 

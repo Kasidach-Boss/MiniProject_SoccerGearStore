@@ -8,6 +8,7 @@
   background-image: url('../components//asset//image/football.jpg');
   opacity: 0.82;
   color: azure;
+  
 }
 
 .main {
@@ -161,4 +162,8 @@
   border-radius: 50px;
   height: 50px;
 
+}
+.video{
+  width:1000px;
+  height:700px;
 }
