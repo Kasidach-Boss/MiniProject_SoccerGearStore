@@ -5,6 +5,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url('../components//asset//image/football.jpg');
+  opacity: 0.82;
+  color: azure;
 }
 
 .main {
@@ -90,14 +93,16 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+  background-color: grey ;
+  
 }
 
-.card:hover,
+/* .card:hover,
 .card:focus,
 .card:active {
   color: #0070f3;
   border-color: #0070f3;
-}
+} */
 
 .card h3 {
   margin: 0 0 1rem 0;
@@ -136,7 +141,24 @@
   margin-top: -50px;
 }
 
-.video{
-  width: 50%;
-  height: 30%;
+
+.Intro {
+  font-size: 20px;
+}
+
+
+.buttonbuy{
+  background-color: yellow;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 50px;
+}
+.button{
+  font-size: large;
+  font-weight: bold;
+  background-color: lightblue;
+  border-radius: 50px;
+  height: 50px;
+
 }

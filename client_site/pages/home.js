@@ -7,14 +7,15 @@ import withAuth from '../components/withAuth'
 import config from '../config/config'
 import useSWR, { mutate } from 'swr';
 import { useState } from 'react'
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const URL = `http://localhost/api/soccers`;
-const URLIN = `http://localhost/api/income`;
+
 const fetcher = url => axios.get(url).then(res=>res.data);
 
 export default function Home({ token }) {
     const {data} = useSWR(URL,fetcher);
-    const {data1} = useSWR(URLIN,fetcher);
     const [soccers, setSoccers] = useState({})
     const [soccer, setSoccer] = useState({})
     const [image, setImage] = useState('')
@@ -33,7 +34,13 @@ export default function Home({ token }) {
     const getSoccer = async(id)=>{
         let result = await axios.get(`${URL}/${id}`);
         setSoccer(result.data);
+        console.log(result.data);
         mutate(URL);
+        toast.success(`You are choosing ${result.data.brand} ${result.data.model}:${result.data.price}฿:${result.data.remark}`,{
+            className:"custom-toast",
+            draggable:true,
+            position:toast.POSITION.BOTTOM_CENTER
+        })
     }
 
     const getSoccers=async()=>{
@@ -41,15 +48,18 @@ export default function Home({ token }) {
         mutate(URL)
     }
 
-    const getIncome = async()=>{
-        let income = await axios.get(`${URLIN}`);
-        setIncome(income.data)
-    }
+    
     const buy = async(id)=>{
         let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})
         let answer = window.confirm("Do you want to buy it?")
         if (answer === true) {
           setNumberofproduct(soccer.data)
+          toast.success("Successful Buying",{
+              className:"custom-toast",
+              draggable:true,
+              position:toast.POSITION.BOTTOM_CENTER
+          });
+          
         }
         
     }
@@ -63,7 +73,7 @@ export default function Home({ token }) {
                         <div><img src={item.image} alt={item.model} className={styles.img}/></div>
                         <div><b>Brand:</b> {item.brand}</div>
                         <div> <b>Model:</b> {item.model} </div>
-                        <div><b>Price:</b> {item.price}</div>
+                        <div><b>Price:</b> {item.price} ฿</div>
                         <div><b>Type:</b> {item.type}</div>
                         <div><b>number of product:</b> {item.numberofproduct}</div>
                         <div><b>Status:</b> {item.remark}</div>
@@ -92,8 +102,9 @@ export default function Home({ token }) {
         
        
         <h1>Home page</h1>
-        No login required!
         
+        <ToastContainer/>
+        Select {soccer.brand}:{soccer.type}:{soccer.model}:{soccer.price} ฿ :{soccer.remark}
         <div className={styles.list}> 
         
         {printSoccers()}

@@ -7,6 +7,8 @@ import useSWR, { mutate } from 'swr';
 import withAuth from '../components/withAuth'
 import config from '../config/config'
 import axios from 'axios';
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const URL = `http://localhost/api/soccers`
 
 const fetcher = url => axios.get(url).then(res => res.data);
@@ -32,6 +34,11 @@ const admin = ({ token }) => {
       let result = await axios.get(`${URL}/${id}`);
       setSoccer(result.data);
       mutate(URL);
+      toast.success(`You are choosing ${result.data.brand} ${result.data.model}:${result.data.price}฿:${result.data.remark}`,{
+        className:"custom-toast",
+        draggable:true,
+        position:toast.POSITION.BOTTOM_CENTER
+    })
   }
 
   const getSoccers=async()=>{

@@ -2,11 +2,14 @@ import Head from 'next/head'
 import Layout from '../components/layout'
 import { useState } from 'react'
 import Navbar from '../components/navbar'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Login.module.css'
 import axios from 'axios'
 import config from '../config/config'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactDom from 'react-dom';
+import React from 'react';
+import { useSpring, animated } from "react-spring";
 
 export default function Login({ token }) {
 
@@ -14,17 +17,12 @@ export default function Login({ token }) {
     const [password, setPassword] = useState('')
     const [status, setStatus] = useState('')
     const[remember, setRemember] = useState(false)
-    
-    // const notify = () => {
-    //     const noti = toast("Wow so easy!");
-    //     return(
-    //         <div>
-    //             <button onClick={noti}>Notify!</button>
-    //             <ToastContainer />
-    //         </div>
-    //     )
+    const [greetingStatus, displayGreeting] = React.useState(false); 
+    const contentProps = useSpring({
+        opacity: greetingStatus ? 1 : 0,
+        marginTop: greetingStatus ? 0 : -500
+      });
 
-    // }
     const login = async (req, res) => {
         try {
             let result = await axios.post(`${config.URL}/login`,
@@ -34,8 +32,11 @@ export default function Login({ token }) {
             console.log('result.data:  ', result.data)
             console.log('token:  ', token)
             setStatus(result.status + ': ' + result.data.user.username)
-            const Hello = toast(`Hello ${result.data.user.username}`)
-            
+            toast.success(`Login Successful  Hello,${result.data.user.username} Status is${result.status}  `,{
+                className:"custom-toast",
+                draggable:true,
+                position:toast.POSITION.BOTTOM_CENTER
+            })
             
             
               
@@ -44,33 +45,40 @@ export default function Login({ token }) {
         catch (e) {
             console.log('error: ', JSON.stringify(e.response))
             setStatus(JSON.stringify(e.response).substring(0, 80) + "...")
+            toast.error(`Incorrect username or password.`,{
+                className:"custom-toast",
+                draggable:true,
+                position:toast.POSITION.BOTTOM_CENTER
+            })
         }
         
     }
 
     const loginForm = () => (
+        
+       
         <div className={styles.gridContainer}>
-            <div>
+             <center>Hello {username}</center>
                 Username:
-            </div>
-            <div>
+            
+            
                 <input type="text"
                     name="username"
                     placeholder="username"
                     onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
-            <div>
+                /><br/>
+            
+            
                 Password:
-            </div>
-            <div>
+            
+           
                 <input type="password"
                     name="password"
                     placeholder="password"
-                    onChange={(e) => setPassword(e.target.value)} />
-            </div>
+                    onChange={(e) => setPassword(e.target.value)} /><br/>
             
-            <div >
+            
+            
         <input
           id="remember"
           name="remember"
@@ -78,10 +86,12 @@ export default function Login({ token }) {
           onClick={rememberStatus}
         />
        
-      </div> 
-      <div ><label>Remember Me</label></div>
+       
+      <label>Remember Me</label>
+      <ToastContainer/>
       
     </div>
+    
        
        
         
@@ -104,18 +114,33 @@ export default function Login({ token }) {
             <div className={styles.container}>
             
                 <h1>Login</h1>
-                <div><b>Token:</b> {token.substring(0, 15)}...
+                {/* <div><b>Token:</b> {token.substring(0, 15)}...
                 <button onClick={copyText}> Copy token </button>
                 </div>
                 <br/>
                 <div>
                     Status:  {status}
+                </div> */}
+                <div className="button-container">
+                    <button onClick={() => displayGreeting(a => !a)} className="button">
+                    Login
+                    </button>
                 </div>
-                <br />
-                {loginForm()}
-                <div>
-                    <button onClick={login}>Login</button>
-                </div>
+                {!greetingStatus ? (
+                   
+                    <div className="Intro"> <br/>Click button below for login</div>
+                ) : (
+                    <animated.div className="box" style={contentProps}>
+                    <h1>Hey there ! This is login page. Good luck for shopping.</h1>
+                    <center>{loginForm()} 
+                        <div>
+                            <button onClick={login}>Login</button>
+                        </div>
+                    </center>
+                    </animated.div>
+                )}
+               
+                
                 
                 
             </div>
