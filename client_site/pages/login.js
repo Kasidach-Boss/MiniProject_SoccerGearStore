@@ -119,7 +119,7 @@ export default function Login({ token }) {
             <div className={styles.container}>
                
                 <div className={styles.card}>
-                   <h1>Login</h1>
+                   <h1>Login For Admin</h1>
                 <div className="button-container">
                     <button onClick={() => displayGreeting(a => !a)} className={styles.clbtn}>
                    Click to Login

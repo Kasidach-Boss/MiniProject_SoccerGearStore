@@ -9,7 +9,7 @@ import config from '../config/config'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {FaKey,FaUser} from 'react-icons/fa';
-import {MdEmail} from 'react-icon/Md';
+import {MdEmail} from 'react-icons/md';
 
 export default function Register({ token }) {
 
@@ -86,30 +86,32 @@ export default function Register({ token }) {
     return (
         <Layout>
             <Head>
-                <title>Register</title>
+                <title>Register For Admin</title>
             </Head>
 
             <Navbar />
             <div className={styles.container}>
                 <div className={styles.box}>
-                   <h1>Register</h1>
-                <div><b>Token:</b> {token.substring(0, 15)}...
+                   <center><h1>Register</h1></center>
+                {/* <div><b>Token:</b> {token.substring(0, 15)}...
                 <button
                         onClick={() => { navigator.clipboard.writeText(token) }}>
                         Copy token
                 </button>
-                </div>
-                <br />
+                </div> */}
+                {/* <br />
             Status:  {status}
-                <br /><br />
+                <br /><br /> */}
                 <div>
                     {registerForm()}
                     <ToastContainer/>
                 </div>
 
                 <div className="button-container">
-                    <button onClick={register} className={styles.buttonregis}>
-                        Register</button>
+                   <center><button onClick={register} className={styles.buttonregis}>
+                        Register</button> <br></br><br></br>
+                        <span><b>Please contact to Owner</b></span></center>
+                        <br></br>
                 </div> 
                 </div>
                 

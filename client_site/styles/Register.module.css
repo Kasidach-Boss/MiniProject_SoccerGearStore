@@ -110,6 +110,7 @@
     box-sizing: border-box;
     font-size: x-large;
     margin-left: 10px;
+    margin-right: 10px;
   }
   
   .button {
@@ -175,16 +176,18 @@
 
   .icon{
     
-    height: 7.5%;
-    min-width: 7.5%;
+    height: 10%;
+    min-width: 10%;
     bottom: -5px;
     margin-bottom: 0px;
+    margin-left: 10px;
   }
   .inputcontainer {
     display: -ms-flexbox; /* IE10 */
     display: flex;
     width: 100%;
     margin-bottom: 15px;
+    
   }
   .buttonregis{
     background-color: brown;
@@ -198,12 +201,15 @@
     border-radius: 5px;
     font-weight: bold;
     
+    
   }
 .box{
   flood-opacity: inherit;
   border: 5px solid#56BAEC;
-  width: 32%;
+  width: 30%;
   border-radius: 10px;
   background-color: #B4D8E7 ;
+  align-items: center;
+
   
 }
