@@ -1,0 +1,209 @@
+.container {
+    min-height: 100vh;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image:url('../components/asset//image/play.jfif');
+    
+  }
+  .card {
+    margin: 1rem;
+    flex-basis: 45%;
+    padding: 1.5rem;
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    width:800px;
+    height: 600px;
+    background-color: #FFF0AA;
+    
+    
+    
+  }
+  
+  
+  
+  .card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .card p {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+  
+  .logo {
+    height: 1em;
+  }
+  
+  @media (max-width: 600px) {
+    .grid {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+  
+  .img{
+    width:90%;
+    height:70%;
+  }
+  
+  .store{
+    font-size: medium;
+    float: left;
+  }
+  
+  .load{
+    width:200px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left:50%;
+    margin-left: -100px;
+    margin-top: -50px;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    margin: 10px;
+    padding: 1px;
+    flex-wrap: wrap;
+    width: 80vw;
+  }
+  .fit{
+      width: 300px;
+  }
+
+  
+  .Intro {
+    
+    font-weight: bold;
+    
+  }
+  .introfont{
+    font-size: 30px;
+    color: aliceblue;
+  }
+  .button {
+    background: #4e4b4b;
+  }
+  .button-container {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .input {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    /* border: 1px solid #ccc; */
+    box-sizing: border-box;
+    font-size: x-large;
+    margin-left: 10px;
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    font-size: large;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+  .clbtn{
+    background-color: #1badda;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: large;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .button:hover {
+    opacity: 0.8;
+  }
+  
+  
+  
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  
+  .avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  
+ 
+  
+  .psw {
+    float: right;
+    padding-top: 16px;
+  }
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    .psw {
+       display: block;
+       float: none;
+    }
+    
+  }
+  .check{
+    font-size: x-large;
+  }
+
+  .icon{
+    
+    height: 7.5%;
+    min-width: 7.5%;
+    bottom: -5px;
+    margin-bottom: 0px;
+  }
+  .inputcontainer {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .buttonregis{
+    background-color: brown;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    font-size: large;
+    border-radius: 5px;
+    font-weight: bold;
+    
+  }
+.box{
+  flood-opacity: inherit;
+  border: 5px solid#56BAEC;
+  width: 32%;
+  border-radius: 10px;
+  background-color: #B4D8E7 ;
+  
+}

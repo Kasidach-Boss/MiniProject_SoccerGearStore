@@ -57,7 +57,7 @@ export default function Login({ token }) {
 
     const loginForm = () => (
         
-       <div styles={styles.card}>
+       <div >
         
              <h3><center>Hello {username}</center></h3>
              <div className={styles.imgcontainer}>
@@ -115,9 +115,7 @@ export default function Login({ token }) {
                 <title>Login</title>
             </Head>
            <Navbar /> 
-           <div>
-               <img src="../components/asset/image/avartar.png"/>
-               </div>
+           
             <div className={styles.container}>
                
                 <div className={styles.card}>

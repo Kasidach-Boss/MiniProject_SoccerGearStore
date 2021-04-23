@@ -2,10 +2,14 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import Layout from '../components/layout'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Register.module.css'
 import Navbar from '../components/navbar'
 import axios from 'axios'
 import config from '../config/config'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {FaKey,FaUser} from 'react-icons/fa';
+import {MdEmail} from 'react-icon/Md';
 
 export default function Register({ token }) {
 
@@ -30,40 +34,47 @@ export default function Register({ token }) {
             console.log('result.data:  ', result.data)
             console.log('token:  ', token)
             setStatus(result.data.message)
+            toast.success(`Login Successful  Hello,${result.data.user.username} Status is${result.status}  `,{
+                className:"custom-toast",
+                draggable:true,
+                position:toast.POSITION.BOTTOM_CENTER
+            })
         }
         catch (e) {
             console.log(e)
+            toast.error(` username or password or Email is empty!!!!.`,{
+                className:"custom-toast",
+                draggable:true,
+                position:toast.POSITION.BOTTOM_CENTER
+            })
         }
 
     }
 
     const registerForm = () => (
-        <div className={styles.gridContainer}>
-            <div>
-                Username:
-            </div>
-            <div>
+        <div >
+            
+            <div className={styles.inputcontainer}>
+                <FaUser className={styles.icon} />
                 <input type="text"
-                    name="username"
+                    name="username" className={styles.input}
                     placeholder="username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
-            <div>
-                Email:
-            </div>
-            <div>
+           
+            <div className={styles.inputcontainer}>
+                <MdEmail className={styles.icon} />
                 <input type="email"
-                    name="email"
+                    name="email" className={styles.input}
                     placeholder="email"
                     onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div>
-                Password:
-            </div>
-            <div>
+           
+            <div className={styles.inputcontainer}> 
+                <FaKey className={styles.icon}/>
                 <input type="password"
-                    name="password"
+                    name="password" className={styles.input}
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)} />
             </div>
@@ -80,8 +91,8 @@ export default function Register({ token }) {
 
             <Navbar />
             <div className={styles.container}>
-                
-                <h1>Register</h1>
+                <div className={styles.box}>
+                   <h1>Register</h1>
                 <div><b>Token:</b> {token.substring(0, 15)}...
                 <button
                         onClick={() => { navigator.clipboard.writeText(token) }}>
@@ -91,13 +102,17 @@ export default function Register({ token }) {
                 <br />
             Status:  {status}
                 <br /><br />
-                <div className={styles.content}>
+                <div>
                     {registerForm()}
+                    <ToastContainer/>
                 </div>
 
-                <div>
-                    <button onClick={register}>Register</button>
+                <div className="button-container">
+                    <button onClick={register} className={styles.buttonregis}>
+                        Register</button>
+                </div> 
                 </div>
+                
             </div>
         </Layout>
     )
