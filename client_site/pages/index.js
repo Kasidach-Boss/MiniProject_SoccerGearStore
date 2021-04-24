@@ -9,6 +9,8 @@ import ReactDom from 'react-dom';
 import WordArt from 'react-wordart'
 import{GiShoppingCart} from 'react-icons/gi';
 import YouTube from 'react-youtube-embed';
+import { FacebookProvider, Page ,MessageUs} from 'react-facebook';
+import {APPID, PAGEID} from '../components/key/ID';
 
 export default function Home({ token }) {
   
@@ -81,11 +83,14 @@ export default function Home({ token }) {
                 </div>
                 <br></br><br></br>
                
-                <Link href="/home">
+          <Link href="/home">
               <button className={styles.buttonbuy}>
                   <p>Click to shop with us! &nbsp;<GiShoppingCart/></p>
               </button>
           </Link>
+          
+               
+          
     </div>
               
             
