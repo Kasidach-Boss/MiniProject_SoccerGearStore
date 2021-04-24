@@ -93,9 +93,7 @@
     font-size: 30px;
     color: aliceblue;
   }
-  .button {
-    background: #4e4b4b;
-  }
+  
   .button-container {
     position: absolute;
     bottom: 0;
@@ -176,8 +174,8 @@
 
   .icon{
     
-    height: 10%;
-    min-width: 10%;
+    height: 7.5%;
+    min-width: 7.5%;
     bottom: -5px;
     margin-bottom: 0px;
     margin-left: 10px;
@@ -209,7 +207,7 @@
   width: 30%;
   border-radius: 10px;
   background-color: #B4D8E7 ;
-  align-items: center;
+  
 
   
 }

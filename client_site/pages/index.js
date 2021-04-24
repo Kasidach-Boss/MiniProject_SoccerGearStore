@@ -34,7 +34,7 @@ export default function Home({ token }) {
     <div className={styles.container}>
     <WordArt text='Welcome to our store' theme={`italicOutline`} fontSize={100} />
     <br></br><br></br>
-    <WordArt text='What position do you play?' theme={`italicOutline`} fontSize={50} />
+    <WordArt text='What is position do you play?' theme={`italicOutline`} fontSize={50} />
     <br></br><br></br>  
                 <div className={styles.card}>
                   {!greetingStatus ? (

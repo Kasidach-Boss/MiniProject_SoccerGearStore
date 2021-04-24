@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import Head from 'next/head'
 import Layout from '../components/layout'
@@ -17,7 +16,6 @@ export default function Register({ token }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [status, setStatus] = useState('')
-
     const profileUser = async () => {
         console.log('token: ', token)
         const users = await axios.get(`${config.URL}/profile`, {
@@ -34,89 +32,95 @@ export default function Register({ token }) {
             console.log('result.data:  ', result.data)
             console.log('token:  ', token)
             setStatus(result.data.message)
-            toast.success(`Login Successful  Hello,${result.data.user.username} Status is${result.status}  `,{
-                className:"custom-toast",
-                draggable:true,
-                position:toast.POSITION.BOTTOM_CENTER
-            })
+            if(result.data.message === "Register success"){
+                toast.success(`Status ${result.status} and ${result.data.message}`,{
+                    className:"custom-toast",
+                    draggable:true,
+                    position:toast.POSITION.BOTTOM_CENTER
+                })
+            }
+            if(result.data.message === "Duplicated user"){
+                toast.warning(`${result.data.message}  `,{
+                    className:"custom-toast",
+                    draggable:true,
+                    position:toast.POSITION.BOTTOM_CENTER
+                })
+            }
+           
+            
         }
         catch (e) {
             console.log(e)
             toast.error(` username or password or Email is empty!!!!.`,{
-                className:"custom-toast",
-                draggable:true,
-                position:toast.POSITION.BOTTOM_CENTER
-            })
+                                className:"custom-toast",
+                                draggable:true,
+                                position:toast.POSITION.BOTTOM_CENTER
+                            })
         }
 
     }
 
     const registerForm = () => (
-        <div >
+         <div >
             
-            <div className={styles.inputcontainer}>
-                <FaUser className={styles.icon} />
-                <input type="text"
-                    name="username" className={styles.input}
-                    placeholder="username"
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
+             <div className={styles.inputcontainer}>
+                 <FaUser className={styles.icon} />
+                 <input className={styles.input} type="text"
+                     name="username" 
+                     placeholder="username"
+                     onChange={(e) => setUsername(e.target.value)}
+                 />
+             </div>
+         
+             <div className={styles.inputcontainer}>
+                 <MdEmail className={styles.icon} />
+                 <input  className={styles.input} type="email"
+                     name="email"
+                     placeholder="email"
+                     onChange={(e) => setEmail(e.target.value)} />
+             </div>
            
-            <div className={styles.inputcontainer}>
-                <MdEmail className={styles.icon} />
-                <input type="email"
-                    name="email" className={styles.input}
-                    placeholder="email"
-                    onChange={(e) => setEmail(e.target.value)} />
-            </div>
-           
-            <div className={styles.inputcontainer}> 
-                <FaKey className={styles.icon}/>
-                <input type="password"
-                    name="password" className={styles.input}
-                    placeholder="password"
-                    onChange={(e) => setPassword(e.target.value)} />
-            </div>
+             <div className={styles.inputcontainer}> 
+                 <FaKey className={styles.icon}/>
+                 <input className={styles.input} type="password"
+                     name="password" 
+                     placeholder="password"
+                     onChange={(e) => setPassword(e.target.value)} />
+             </div>
 
-        </div>
+          </div>
+
     )
 
 
     return (
         <Layout>
             <Head>
-                <title>Register For Admin</title>
-            </Head>
+                 <title>Register For Admin</title>
+             </Head>
 
-            <Navbar />
-            <div className={styles.container}>
-                <div className={styles.box}>
-                   <center><h1>Register</h1></center>
-                {/* <div><b>Token:</b> {token.substring(0, 15)}...
-                <button
-                        onClick={() => { navigator.clipboard.writeText(token) }}>
-                        Copy token
-                </button>
-                </div> */}
-                {/* <br />
-            Status:  {status}
-                <br /><br /> */}
-                <div>
-                    {registerForm()}
-                    <ToastContainer/>
-                </div>
-
-                <div className="button-container">
-                   <center><button onClick={register} className={styles.buttonregis}>
-                        Register</button> <br></br><br></br>
-                        <span><b>Please contact to Owner</b></span></center>
-                        <br></br>
-                </div> 
-                </div>
+             <Navbar />
+             <div className={styles.container}>
+                 <div className={styles.box}>
+                    <center><h1>Register</h1></center>
                 
-            </div>
-        </Layout>
+                 <div>
+                     {registerForm()}
+                     <ToastContainer/>
+                 </div>
+                 <div className="button-container">
+                    <center><button onClick={register} className={styles.buttonregis}>
+                         Register</button> <br></br><br></br>
+                         <span><b>Please contact to Owner</b></span></center>
+                         <br></br>
+                 </div> 
+                 </div>
+               
+             </div>
+         </Layout>
+//     )
+// }
+
     )
 }
 

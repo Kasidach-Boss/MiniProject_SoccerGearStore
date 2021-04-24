@@ -33,6 +33,7 @@ export default function Login({ token }) {
             console.log('result.data:  ', result.data)
             console.log('token:  ', token)
             setStatus(result.status + ': ' + result.data.user.username)
+            
             toast.success(`Login Successful  Hello,${result.data.user.username} Status is${result.status}  `,{
                 className:"custom-toast",
                 draggable:true,

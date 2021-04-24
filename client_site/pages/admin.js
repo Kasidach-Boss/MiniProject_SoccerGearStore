@@ -9,6 +9,14 @@ import config from '../config/config'
 import axios from 'axios';
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {HiPhotograph,HiTemplate} from 'react-icons/hi';
+import {BiMoney} from 'react-icons/bi';
+import {GrObjectGroup,GrStatusUnknown} from 'react-icons/gr';
+import {AiOutlineFieldNumber} from 'react-icons/ai';
+import {SiBrandfolder} from 'react-icons/si';
+import WordArt from 'react-wordart'
+
+
 const URL = `http://localhost/api/soccers`
 
 const fetcher = url => axios.get(url).then(res => res.data);
@@ -17,7 +25,7 @@ const admin = ({ token }) => {
   const {data} = useSWR(URL,fetcher);
   const [soccers, setSoccers] = useState({})
   const [soccer, setSoccer] = useState({})
-  const [image, setImage] = useState('./api/emptyphoto.png')
+  const [image, setImage] = useState('https://cdn.pixabay.com/photo/2017/01/25/17/33/camera-2008479_960_720.png')
   const [brand, setBrand] = useState('');
   const [type, setType] = useState('')
   const [model, setModel] = useState('empty');
@@ -54,8 +62,13 @@ const admin = ({ token }) => {
   const updateSoccer = async (id) => {
     let answer = window.confirm("Do you want to update it?")
     if (answer === true) {
-      let soccer = await axios.put(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
-      setStudents(soccer.data)
+      let result = await axios.put(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
+      setSoccers(soccer.data)
+      toast.success(`Update ${result.data.brand} ${result.data.model}:${result.data.price}฿:${result.data.remark} Success`,{
+        className:"custom-toast",
+        draggable:true,
+        position:toast.POSITION.BOTTOM_CENTER
+    })
       mutate(URL)
     }
   }
@@ -63,19 +76,18 @@ const admin = ({ token }) => {
   const deleteSoccer = async (id) => {
     let answer = window.confirm("Do you want to delete it?")
     if (answer === true) {
-      let soccer = await axios.delete(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
+      let result = await axios.delete(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
+      setSoccers(soccer.data)
+      toast.success(`Delete Success`,{
+        className:"custom-toast",
+        draggable:true,
+        position:toast.POSITION.BOTTOM_CENTER
+    })
       mutate(URL)
     }
   }
 
-  // const buy = async(id)=>{
-  //   let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})
-  //   let answer = window.confirm("Do you want to buy it?")
-  //   if (answer === true) {
-  //     setNumberofproduct(soccer.data)
-  //   }
-    
-  // }
+  
   
 
   const printSoccers=()=>{
@@ -84,8 +96,8 @@ const admin = ({ token }) => {
               return(
                   <div className={styles.productlist} key={index}>
                     
-                      <img src={item.image} alt={item.model} className={styles.img}/><br/>
-                      <b>Brand:</b> {item.brand}<br/>
+                     <center><img src={item.image} alt={item.model} className={styles.img}/><br/></center> 
+                      <b>Brand:</b>{item.brand}<br/>
                       <b>Model:</b> {item.model}<br/>
                       <b>Type:</b> {item.type}<br/>
                       <b>Price:</b> {item.price} ฿<br/>
@@ -93,9 +105,9 @@ const admin = ({ token }) => {
                       <b>Status:</b> {item.remark}<br/>
                       
                       <br/>
-                      <button onClick={() => getSoccer(item.id)}>Get</button>
-                      <button onClick={() => updateSoccer(item.id)}>Update</button>
-                      <button onClick={() => deleteSoccer(item.id)}>Delete</button>
+                      <button onClick={() => getSoccer(item.id)} className={styles.getbutton}>Get</button>
+                      <button onClick={() => updateSoccer(item.id)} className={styles.updatebutton}>Update</button>
+                      <button onClick={() => deleteSoccer(item.id)} className={styles.deletebutton}>Delete</button>
                       
                       
                       
@@ -113,25 +125,56 @@ const admin = ({ token }) => {
     return (
       <Layout>
       <Head>
-          <title>First Page</title>
+          <title>Manage Your Product</title>
       </Head>
       <Navbar />
       <div className={styles.container}>
-          
-          
-          <h1>Home page</h1>
-            Image Path or Link Image address:<input type="text" onChange={(e) => setImage(e.target.value)}></input>
-            Brand:<input type="text" onChange={(e) => setBrand(e.target.value)}></input>
-            Model:<input type="text" onChange={(e) => setModel(e.target.value)}></input>
-            Type:<input type="text" onChange={(e) => setType(e.target.value)}></input>
-            Price:<input type="number" onChange={(e) => setPrice(e.target.value)}></input>
-            Number of product:<input type="number" onChange={(e) => setNumberofproduct(e.target.value)}></input>
-            Status:<input type="text" onChange={(e) => setRemark(e.target.value)}></input>
-            <br></br>
-            <button  onClick={() => addSoccer(image,brand,model,type,price,remark,numberofproduct)}>Add a Product</button>
-            <div className={styles.list}>
-             {printSoccers()} 
+          <br></br>
+          <div className={styles.box}>
+          <center><h1>You can input in this form for Update or add item</h1></center>
+          <div className={styles.inputcontainer}>
+            <HiPhotograph className={styles.icon}/>
+            <input type="text" onChange={(e) => setImage(e.target.value)} 
+            placeholder="Path or link image address" className={styles.input}>
+            </input>
+          </div>
+            <div className={styles.inputcontainer}> 
+              <SiBrandfolder className={styles.icon}/>
+              <input type="text" onChange={(e) => setBrand(e.target.value)} 
+               placeholder="Brand" className={styles.input}>
+              </input>
             </div>
+            <div className={styles.inputcontainer}>
+              <HiTemplate className={styles.icon}/>
+              <input type="text" onChange={(e) => setModel(e.target.value)}  
+              placeholder="Model"className={styles.input}></input>
+              </div>
+           <div className={styles.inputcontainer}>
+             <GrObjectGroup className={styles.icon}/>
+             <input type="text" onChange={(e) => setType(e.target.value)} placeholder="Type" className={styles.input}></input>
+            </div>
+            <div className={styles.inputcontainer}> 
+              <BiMoney className={styles.icon}/>
+              <input type="number" onChange={(e) => setPrice(e.target.value)} placeholder="Pirce" className={styles.input}></input>
+            </div>
+            <div className={styles.inputcontainer}>
+              <AiOutlineFieldNumber className={styles.icon}/>
+              <input type="number" onChange={(e) => setNumberofproduct(e.target.value)} placeholder="number of product"className={styles.input}></input>
+            </div>
+            <div className={styles.inputcontainer}>
+            <GrStatusUnknown className={styles.icon}/>
+            <input type="text" onChange={(e) => setRemark(e.target.value)} placeholder="Status" className={styles.input}></input>
+            </div>
+            <br></br>
+            <center><button  onClick={() => addSoccer(image,brand,model,type,price,remark,numberofproduct)} className={styles.button}>Add a Product</button></center>
+          </div>
+         <div className={styles.select}>
+           <h3>Select {soccer.brand}:{soccer.type}:{soccer.model}:{soccer.price} ฿ :{soccer.remark}</h3>
+           </div> 
+          <div className={styles.list}>
+             {printSoccers()} 
+          </div>
+          <ToastContainer/>
             
       </div>      
                                 

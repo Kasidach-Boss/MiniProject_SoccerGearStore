@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 import config from '../config/config'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import WordArt from 'react-wordart';
 
 export default function Logout({ token }) {
 
@@ -18,6 +21,13 @@ export default function Logout({ token }) {
         console.log('remove token: ', token)
         let result = await axios.get(`${config.URL}/logout`, { withCredentials: true })
         setStatus("Logout successful")
+        console.log("result: ",result);
+        toast.success(`${result.data.message}`, {
+            className:"custom-toast",
+            draggable:true,
+            position:toast.POSITION.BOTTOM_CENTER
+        })
+
     }
  
     return (
@@ -27,11 +37,12 @@ export default function Logout({ token }) {
             </Head>
             <Navbar />
             <div className={styles.container}>
-                
-                <h1>Logout</h1>
+            <WordArt text='Logout' theme={`italicOutline`} fontSize={100} />  
                 <div>
-                    <h2> {status}  </h2>
+                    <br></br>
+                    <h1> {status}  </h1>
                 </div>
+                <ToastContainer/>
             </div> 
         </div>
             

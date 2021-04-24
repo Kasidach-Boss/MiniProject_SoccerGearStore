@@ -1,4 +1,3 @@
-
 const express = require('express'),
     app = express(),
     passport = require('passport'),
@@ -173,6 +172,7 @@ router.route('/soccers/buy/:soccer_id')
     }
     res.json(soccers);
 })
+
 
 
 

@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(120deg,	#FFD700,black);
   }
   .card {
     margin: 1rem;
@@ -17,8 +18,19 @@
     border-radius: 10px;
     
   }
-  
-  
+  .select{
+    background-color: silver;
+    flex-basis: 45%;
+    height: 30%;
+    width: 50%;
+    font-size: 40px;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  .select h3{
+    margin: 10px;
+    margin-left: 10px;
+  }
   
   .card h3 {
     margin: 0 0 1rem 0;
@@ -72,6 +84,8 @@
     width: 25%;
     height:50%;
     padding: 1%;
+    font-size: 20px;
+    background-color: aliceblue;
       
     
   }
@@ -88,3 +102,206 @@
   .fit{
       width: 300px;
   }
+  .load{
+    width:200px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left:50%;
+    margin-left: -100px;
+    margin-top: -50px;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    margin: 10px;
+    padding: 1px;
+    flex-wrap: wrap;
+    width: 80vw;
+  }
+  .fit{
+      width: 300px;
+  }
+
+  
+  .Intro {
+    
+    font-weight: bold;
+    
+  }
+  .introfont{
+    font-size: 30px;
+    color: aliceblue;
+  }
+  
+  .button-container {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .input {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    /* border: 1px solid #ccc; */
+    box-sizing: border-box;
+    font-size: x-large;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    font-size: large;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+  .getbutton{
+    background-color: #1badda;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    font-size: large;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  .getbutton:hover{
+    opacity: 0.8;
+  }
+  .updatebutton{
+    background-color:#462066;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    font-size: large;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .updatebutton:hover{
+    opacity: 0.8;
+  }
+  .deletebutton{
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    font-size: large;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .deletebutton:hover{
+    opacity: 0.8;
+  }
+
+  
+  .button:hover {
+    opacity: 0.8;
+  }
+  
+  
+  
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  
+  .avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  
+ 
+  
+  .psw {
+    float: right;
+    padding-top: 16px;
+  }
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    .psw {
+       display: block;
+       float: none;
+    }
+    
+  }
+  .check{
+    font-size: x-large;
+  }
+
+  .icon{
+    
+    height: 8%;
+    min-width:8%;
+    bottom: -5px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+  }
+  .inputcontainer {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    
+  }
+  .buttonregis{
+    background-color: brown;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    font-size: large;
+    border-radius: 5px;
+    font-weight: bold;
+    
+    
+  }
+.box{
+  flood-opacity: inherit;
+  border: 5px solid#56BAEC;
+  width: 30%;
+  border-radius: 10px;
+  background-color: #B4D8E7 ;
+  align-items: center;
+
+  
+}
+.getbutton{
+  background-color: #1badda;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  font-size: large;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.getbutton:hover{
+  opacity: 0.8;
+}

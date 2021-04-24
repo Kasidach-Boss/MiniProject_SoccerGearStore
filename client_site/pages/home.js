@@ -1,7 +1,7 @@
 import Head from 'next/head' 
 import Layout from '../components/layout' 
 import Navbar from '../components/navbar'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Customer.module.css'
 import axios from 'axios'
 import withAuth from '../components/withAuth'
 import config from '../config/config'
@@ -9,6 +9,7 @@ import useSWR, { mutate } from 'swr';
 import { useState } from 'react'
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import WordArt from 'react-wordart'
 
 const URL = `http://localhost/api/soccers`;
 
@@ -51,10 +52,13 @@ export default function Home({ token }) {
     
     const buy = async(id)=>{
         let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})
+        
+        console.log(soccer.data);
         let answer = window.confirm("Do you want to buy it?")
-        if (answer === true) {
+        console.log(soccer.data.remark);
+        if (answer === true   ) {
           setNumberofproduct(soccer.data)
-          toast.success("Successful Buying",{
+          toast.success(`Successful Buying ${soccer.data.numberofproduct}`,{
               className:"custom-toast",
               draggable:true,
               position:toast.POSITION.BOTTOM_CENTER
@@ -62,27 +66,29 @@ export default function Home({ token }) {
           
         }
         
+       
+        
     }
 
     const printSoccers=()=>{
         if(data.list && data.list.length){
             return data.list.map((item, index)=>{
                 return(
-                    <div className={styles.listItem} key={index}>
+                    <div className={styles.productlist} key={index}>
                         
-                        <div><img src={item.image} alt={item.model} className={styles.img}/></div>
+                        <center><div><img src={item.image} alt={item.model} className={styles.img}/></div></center>
                         <div><b>Brand:</b> {item.brand}</div>
                         <div> <b>Model:</b> {item.model} </div>
                         <div><b>Price:</b> {item.price} ฿</div>
                         <div><b>Type:</b> {item.type}</div>
                         <div><b>number of product:</b> {item.numberofproduct}</div>
                         <div><b>Status:</b> {item.remark}</div>
-                        
-                        <div>
-                        <button onClick={() => getSoccer(item.id)}>Get</button>
-                        <button onClick={()=> buy(item.id)}>Buy</button>
-                        </div>
                         <br></br>
+                        <div><center>
+                        <button onClick={() => getSoccer(item.id)} className={styles.getbutton}>Get</button>
+                        <button onClick={()=> buy(item.id)} className={styles.buttonbuy}>Buy</button>
+                        </center></div>
+                        
                     </div>
                 )
             })
@@ -95,16 +101,18 @@ export default function Home({ token }) {
   return (
     <Layout>
     <Head>
-        <title>First Page</title>
+        <title>Customer Preview</title>
     </Head>
     <Navbar />
     <div className={styles.container}>
         
        
-        <h1>Home page</h1>
+    <WordArt text='Customer Preview' theme={`radial`} fontSize={100} />
         
         <ToastContainer/>
-        Select {soccer.brand}:{soccer.type}:{soccer.model}:{soccer.price} ฿ :{soccer.remark}
+        <div className={styles.select}>
+           <h3>Select {soccer.brand}:{soccer.type}:{soccer.model}:{soccer.price} ฿ :{soccer.remark}</h3>
+        </div> 
         <div className={styles.list}> 
         
         {printSoccers()}
