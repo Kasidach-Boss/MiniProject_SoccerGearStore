@@ -33,7 +33,7 @@ export default function Logout({ token }) {
     return (
         <div>
            <Head>
-                <title>User profile</title>
+                <title>Logout</title>
             </Head>
             <Navbar />
             <div className={styles.container}>

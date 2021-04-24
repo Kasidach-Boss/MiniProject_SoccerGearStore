@@ -57,15 +57,19 @@ const admin = ({ token }) => {
   const addSoccer = async (image,brand,model,type,price,remark,numberofproduct) => {
     let soccer = await axios.post(URL, { image,brand,model,type,price,remark,numberofproduct })
     console.log(soccer.data);
-    getSoccers();
+    mutate(URL)
    
   }
   const updateSoccer = async (id) => {
+      
+    let result = await axios.put(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
     let answer = window.confirm("Do you want to update it?")
+    console.log(result);
     if (answer === true) {
-      let result = await axios.put(`${URL}/${id}`, { image,brand,model,type,price,remark,numberofproduct })
-      setSoccers(soccer.data)
-      toast.success(`Update ${result.data.brand} ${result.data.model}:${result.data.price}฿:${result.data.remark} Success`,{
+      
+      setSoccers(result.data.price)
+      
+      toast.success(`Update Success`,{
         className:"custom-toast",
         draggable:true,
         position:toast.POSITION.BOTTOM_CENTER
@@ -88,65 +92,6 @@ const admin = ({ token }) => {
     }
   }
 
-  
-  
-
-  // const printSoccers=()=>{
-  //     if(data.list && data.list.length){
-  //       if(data.list && data.list.length){
-  //         return(
-  //         <div>
-  //             <center><div className={styles.inputcontainer}>
-  //                 <input type="text" placeholder="Search...."onChange={(e)=>{
-  //                 setSearch(e.target.value)
-  //             }} className={styles.input} />
-  //             </div></center>
-  //            < div className={styles.list}>
-              
-  //             {data.list.filter((item)=>{
-  //             if (search =="") {
-  //                 return (<div className={styles.list}>{item}</div>);
-  //             }else if (item.brand.toLowerCase().includes(search.toLowerCase())){
-  //                 return item.brand;
-  //             }else if (item.model.toLowerCase().includes(search.toLowerCase())){
-  //                 return item.model;
-  //             }else if (item.type.toLowerCase().includes(search.toLowerCase())){
-  //                 return item.type;
-  //             }
-  //             else if (item.remark.toLowerCase().includes(search.toLowerCase())){
-  //                 return item.type;
-  //             }
-              
-  //             }).map((item, index)=>{
-  //             return(
-  //                 <div className={styles.productlist} key={index}>
-                    
-  //                    <center><img src={item.image} alt={item.model} className={styles.img}/><br/></center> 
-  //                     <b>Brand:</b>{item.brand}<br/>
-  //                     <b>Model:</b> {item.model}<br/>
-  //                     <b>Type:</b> {item.type}<br/>
-  //                     <b>Price:</b> {item.price} ฿<br/>
-  //                     <b>Number of product:</b> {item.numberofproduct} pieces<br/>
-  //                     <b>Status:</b> {item.remark}<br/>
-                      
-  //                     <br/>
-  //                     <button onClick={() => getSoccer(item.id)} className={styles.getbutton}>Get</button>
-  //                     <button onClick={() => updateSoccer(item.id)} className={styles.updatebutton}>Update</button>
-  //                     <button onClick={() => deleteSoccer(item.id)} className={styles.deletebutton}>Delete</button>
-                      
-                      
-                      
-                      
-  //                     <br></br>
-  //                 </div>
-  //               })}
-  //             )
-  //         })
-  //     }else {
-  //         return <h3>loading...</h3>
-  //     }
-  // }
-
 const printSoccers =()=>{
         if(data.list && data.list.length){
             return(
@@ -159,7 +104,7 @@ const printSoccers =()=>{
                < div className={styles.list}>
                 
                 {data.list.filter((item)=>{
-                if (search =="") {
+                if (search =="") { console.log(item.numberofproduct);
                     return (<div className={styles.list}>{item}</div>);
                 }else if (item.brand.toLowerCase().includes(search.toLowerCase())){
                     return item.brand;
@@ -167,6 +112,10 @@ const printSoccers =()=>{
                     return item.model;
                 }else if (item.type.toLowerCase().includes(search.toLowerCase())){
                     return item.type;
+                }else if (item.price.toString().toLowerCase().includes(search.toLowerCase())){
+                  return item.price;
+                }else if (item.numberofproduct.toString().toLowerCase().includes(search.toLowerCase())){
+                  return item.numberofproduct;
                 }
                 else if (item.remark.toLowerCase().includes(search.toLowerCase())){
                     return item.remark;
@@ -181,7 +130,7 @@ const printSoccers =()=>{
                             <div> <b>Model:</b> {item.model} </div>
                             <div><b>Price:</b> {item.price} ฿</div>
                             <div><b>Type:</b> {item.type}</div>
-                            <div><b>number of product:</b> {item.numberofproduct}</div>
+                            <div><b>number of product:</b> {item.numberofproduct} pieces</div>
                             <div><b>Status:</b> {item.remark}</div>
                             <br></br>
                             <div><center>
@@ -242,7 +191,7 @@ const printSoccers =()=>{
             </div>
             <div className={styles.inputcontainer}>
               <AiOutlineFieldNumber className={styles.icon}/>
-              <input type="number" onChange={(e) => setNumberofproduct(e.target.value)} placeholder="number of product"className={styles.input}></input>
+              <input type="number" onChange={(e) => setNumberofproduct(e.target.value)} placeholder="Number of Product" className={styles.input}></input>
             </div>
             <div className={styles.inputcontainer}>
             <GrStatusUnknown className={styles.icon}/>

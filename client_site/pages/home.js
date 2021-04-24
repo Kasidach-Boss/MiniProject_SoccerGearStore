@@ -93,9 +93,13 @@ export default function Home({ token }) {
                     return item.model;
                 }else if (item.type.toLowerCase().includes(search.toLowerCase())){
                     return item.type;
+                }else if (item.price.toString().toLowerCase().includes(search.toLowerCase())){
+                    return item.price;
+                }else if (item.numberofproduct.toString().toLowerCase().includes(search.toLowerCase())){
+                    return item.numberofproduct;
                 }
                 else if (item.remark.toLowerCase().includes(search.toLowerCase())){
-                    return item.type;
+                    return item.remark;
                 }
                 
                 }).map((item,index)=>{
@@ -107,7 +111,7 @@ export default function Home({ token }) {
                             <div> <b>Model:</b> {item.model} </div>
                             <div><b>Price:</b> {item.price} ฿</div>
                             <div><b>Type:</b> {item.type}</div>
-                            <div><b>number of product:</b> {item.numberofproduct}</div>
+                            <div><b>number of product:</b> {item.numberofproduct} pieces</div>
                             <div><b>Status:</b> {item.remark}</div>
                             <br></br>
                             <div><center>

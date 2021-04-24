@@ -82,7 +82,7 @@
     border: 1px solid #eaeaea;
     border-radius: 10px;
     width: 25%;
-    height:50%;
+    max-height:30%;
     padding: 1%;
     font-size: 20px;
     background-color: aliceblue;
