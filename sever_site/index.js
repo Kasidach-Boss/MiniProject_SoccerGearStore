@@ -122,7 +122,7 @@ let soccers = {
         {id:3,image:"https://cdn.arifootballstore.com/catalog/product/cache/image/beff4985b56e3afdbeabfc89641a4582/p/u/puma_ultra_1.2_fg_ag_-_black_white_yellow_10629902__02.jpg?w=400",brand:"Puma",model:"PUMA ULTRA 1.2 FG/AG - BLACK/YELLOW",type:"shoes",price:7999,numberofproduct:10,remark:"In stock"},
         {id:4,image:"https://d1a2ggqmhsoom.cloudfront.net/ON-V5_I4cKzXLtbbvSxEGsZJpt4=/fit-in/346x500/filters:quality(90):fill(ffffff)/http://static-catalog.supersports.co.th/p/puma-2647-18827-1.jpg",brand:"Puma",model:"PUMA MANCHESTER CITY 2020/2021 HOME PLAYER JERSEY - TEAM LIGHT BLUE",type:"kit",price:2799,numberofproduct:100,remark:"In stock"},
         {id:5,image:"https://cdn.arifootballstore.com/catalog/product/cache/image/beff4985b56e3afdbeabfc89641a4582/a/d/adidas_finale_pro_-_white_ironmt_silvmt_gk3477__01.jpg?w=400",brand:"Adidas",model:"ADIDAS FINALE 21 20TH ANNIVERSARY UCL PRO BALL - WHITE/IRON METALLIC",type:"Ball",price:4200,numberofproduct:50,remark:"In stock"},
-        {id:6,image:"https://cdn.arifootballstore.com/catalog/product/cache/image/beff4985b56e3afdbeabfc89641a4582/j/_/j_guard_shin_guard_black_sp0040-009_lr_01.jpg?w=400",brand:"Nike",model:"NIKE J GUARD - BLACK/WHITEC",type:"accessory",price:350,numberofproduct:100,remark:"In stock"},
+        {id:6,image:"https://cdn.arifootballstore.com/catalog/product/cache/image/beff4985b56e3afdbeabfc89641a4582/j/_/j_guard_shin_guard_black_sp0040-009_lr_01.jpg?w=400",brand:"Nike",model:"NIKE J GUARD - BLACK/WHITEC",type:"accessory",price:350,numberofproduct:1,remark:"In stock"},
     ]
 }
 router.route('/soccers')

@@ -73,9 +73,15 @@ const admin = ({ token }) => {
         className:"custom-toast",
         draggable:true,
         position:toast.POSITION.BOTTOM_CENTER
-    })
-      mutate(URL)
+    })}
+    else if (answer === false) {
+      toast.warn(`Cancel Upadtae `,{
+          className:"custom-toast",
+          draggable:true,
+          position:toast.POSITION.BOTTOM_CENTER
+      });
     }
+      mutate(URL)
   }
 
   const deleteSoccer = async (id) => {
@@ -87,10 +93,17 @@ const admin = ({ token }) => {
         className:"custom-toast",
         draggable:true,
         position:toast.POSITION.BOTTOM_CENTER
-    })
-      mutate(URL)
+    })}
+    else if (answer === false) {
+      toast.warn(`Cancel Delete `,{
+          className:"custom-toast",
+          draggable:true,
+          position:toast.POSITION.BOTTOM_CENTER
+      });
     }
+      mutate(URL)
   }
+  
 
 const printSoccers =()=>{
         if(data.list && data.list.length){

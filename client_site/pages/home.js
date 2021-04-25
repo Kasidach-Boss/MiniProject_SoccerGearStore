@@ -54,19 +54,24 @@ export default function Home({ token }) {
 
     
     const buy = async(id)=>{
-        let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})
-        
-        console.log(soccer.data);
         let answer = window.confirm("Do you want to buy it?")
-        console.log(soccer.data.remark);
+        
         if (answer === true   ) {
+           let soccer = await axios.put(`${URL}/buy/${id}`,{numberofproduct})  
           setNumberofproduct(soccer.data)
-          toast.success(`Successful Buying ${soccer.data.numberofproduct}`,{
+          toast.success(`Successful Buying `,{
               className:"custom-toast",
               draggable:true,
               position:toast.POSITION.BOTTOM_CENTER
           });
           
+        }
+        else if (answer === false) {
+            toast.warn(`Cancel Buying `,{
+                className:"custom-toast",
+                draggable:true,
+                position:toast.POSITION.BOTTOM_CENTER
+            });
         }
         
        

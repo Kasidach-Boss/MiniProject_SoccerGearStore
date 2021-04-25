@@ -43,7 +43,7 @@ export default function Home({ token }) {
                    <div className="Intro"> <br/><h1>A.This is for another poition.</h1></div>
                    
                 ) : (
-                    <animated.div className="box" style={contentProps}>
+                    <animated.div  style={contentProps}>
                     <h1><center>Hey there ! This is basic skill</center></h1>
                     <center> 
                       
@@ -66,7 +66,7 @@ export default function Home({ token }) {
                    
                    <div className="Intro"> <br/><h1>B.This is for Goalkepper.</h1></div>
                ) : (
-                   <animated.div className="box" style={contentProps1}>
+                   <animated.div  style={contentProps1}>
                    <h1><center>Hey there ! This is Goalkeeper skill</center></h1>
                    <center> 
                    
