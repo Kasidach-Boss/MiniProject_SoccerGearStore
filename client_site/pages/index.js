@@ -40,7 +40,7 @@ export default function Home({ token }) {
     <br></br><br></br>  
                 <div className={styles.card}>
                   {!greetingStatus ? (
-                   <div className="Intro"> <br/><h1>A.This is for another poition.</h1></div>
+                   <div className="Intro"> <br/><h1>A.This is for another position.</h1></div>
                    
                 ) : (
                     <animated.div  style={contentProps}>
